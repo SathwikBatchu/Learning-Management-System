@@ -48,3 +48,5 @@ So check the output of this by log in as student.<br>
 Finally,Type "localhost:3000".<br>
 And press the parental and enter the register number of the student which is you created in the student details initially before log in as a student.<br>
 You will get the marks of the student for a particular student register number. <br>
+# Declaration :
+We confirm that the project showcased here was either developed entirely during the hackathon or underwent significant updates within the hackathon timeframe. We understand that if any plagiarism from online sources is detected, our project will be disqualified, and our participation in the hackathon will be revoked.
