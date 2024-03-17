@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            width: 180px;
+            height: 30px;
+            font-size: large;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .student-details {
+            margin: 20px 0;
+        }
+
+        .student-details ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .student-details li {
+            flex: 0 0 calc(50% - 20px);
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+    <title>Get The Details</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Faculty Details</h1>
+        <div class="student-details">
+            <ul>
+                <li><strong>Faculty ID:</strong> <span id="studentID"></span></li>
+                <li><strong>Name:</strong> <span id="studentName"></span></li>
+                <li><strong>Email:</strong> <span id="studentEmail"></span></li>
+                <li><strong>Subject:</strong> <span id="studentDOB"></span></li>
+                <li><strong>Mobile Number:</strong> <span id="studentPhone"></span></li>
+                <li><strong>Slot:</strong> <span id="studentSlot"></span></li>
+                <li><strong>Cabin:</strong> <span id="cabin"></span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        fetch('/fgetdetails')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('studentID').innerHTML = data.user.fid;
+                    document.getElementById('studentName').innerHTML = data.user.name;
+                    document.getElementById('studentEmail').innerHTML = data.user.email;
+                    document.getElementById('studentDOB').innerHTML = data.user.subject;
+                    document.getElementById('studentPhone').innerHTML = data.user.phone;
+                    document.getElementById('studentSlot').innerHTML = data.user.slot;
+                    document.getElementById('cabin').innerHTML = data.user.cabin;
+                } else {
+                    alert('No Registration Number found');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image and Text Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        div {
+            width: 80%;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        label {
+            text-align: left !important;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            align-self: center;
+        }
+        .navbar {
+            height: 50px;
+            margin-top: 50px;
+            background-color: orangered;
+        }
+        span {
+            color: orange;
+            font-style: italic;
+        }
+        .x {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar"><h1>Event <span>Registration</span></h1></div>
+    <div class="x">
+        <label for="heading">Title:</label>
+        <input type="text" name="heading" required id="title">
+        <label for="paragraph">Event Description:</label>
+        <textarea name="paragraph" rows="4" required  id="para"></textarea>
+        <label for="paragraph">Enter Event Coordinator Name:</label>
+        <input type="text" name="heading" required id="name">
+        <label for="paragraph">Enter Phone Number:</label>
+        <input type="text" name="heading" required id="phno">
+        <button id="ok">Submit</button>
+    </div>
+</body>
+<script>
+    document.getElementById('ok').addEventListener('click', function (e) {
+        var title = document.getElementById('title').value;
+        var para = document.getElementById('para').value;
+        var name = document.getElementById('name').value;
+        var phno = document.getElementById('phno').value;
+        if(title==='' || para==='' || name==='' || phno==='') {
+            alert('Fill All The Event Details');
+        }
+        else{
+            fetch('/events/'+title+'/'+para+'/'+name+'/'+phno)
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.success){
+                    alert('Event uploaded successfully');
+                }
+                else{
+                    alert('Failed to upload the event');
+                }
+            });
+        }
+    })
+</script>
+
+</html>

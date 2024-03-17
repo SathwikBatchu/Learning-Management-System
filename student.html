@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Email and Password Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 50x 0px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        div {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,select,textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+        .navbar {
+            background-color: orangered;
+            height: 70px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        span {
+            color: orange;
+            font-style: italic;
+        }
+        .x {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+        }
+      
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Student <span>Registration</span></h1>
+        <br>
+    </div>
+    
+    <div class="x">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="name">Name Of student:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="gender"></label>
+        <select id="gender" name="period">
+            <option value="male" default>Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+        </select>
+        <label for="slot">Select The Slot:</label>
+        <select id="slot" name="slot">
+            <option value="1" default>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="2">4</option>
+            <option value="3">5</option>
+        </select>
+        <label for="year">Select The Year:</label>
+        <select id="year" name="year">
+            <option value="1" default>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <label for="phone">Mobile Number:</label>
+        <input type="number" id="phone" name="mobile" required>
+        <label for="id">Reg No:</label>
+        <input type="number" id="id" name="mobile" required>
+        <label for="dept">Select The Department:</label>
+        <select id="dept" name="period">
+            <option value="CSE" default>CSE</option>
+            <option value="IT">INFORMATION TECHNOLOGY</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="MECH">MECHANICAL</option>
+            <option value="CIVIL">CIVIL</option>
+            <option value="AERO">AERONAUTICAL</option>
+        </select>
+        <textarea name="add" cols="30" rows="10" id="addr" placeholder="Enter the address"></textarea>
+        <label for="dob">Enter The Date Of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        <label for="hostel">Enter the resident type</label>
+        <select id="hostel" name="period">
+            <option value="hosteller" default>hosteller</option>
+            <option value="day scholar">day scholar</option>
+        </select>
+        <button id="ok1">Submit</button>
+    </div>
+</body>
+<script>
+  document.getElementById("ok1").addEventListener('click', function(e) {
+    var email = document.getElementById("email").value;
+    var password = document.getElementById("password").value;
+    var slot = document.getElementById("slot").value;
+    var year = document.getElementById("year").value;
+    var phone = document.getElementById("phone").value;
+    var dept = document.getElementById("dept").value; 
+    var id = document.getElementById("id").value;
+    var dob = document.getElementById('dob').value;
+    var address = document.getElementById('addr').value;
+    var res = document.getElementById("hostel").value;
+    var gender = document.getElementById('gender').value;
+    var name = document.getElementById('name').value;
+    if (email === '' || password === '' || slot === '' || dept === '' || phone === '' || id === '' || name === '' || dob === '' || address === '' || gender === '' || year === '') {
+        alert('Enter all the details');
+    }
+    else if(phone.length!=10){
+        alert('The phone must be at least 10 characters');
+    }
+    else if(Number(phone[0])<=5){
+        alert('The phone must start with numbers 6,7,8,9');
+    }
+    else if(Number(id[0]!=9)){
+        alert('The registration number must start with number 9')
+    }
+    else if(id.length>=9 && id.length<=10){
+        alert('The registration number must be between 9 and 10 characters');
+    }
+     else {
+        fetch('/student' + '/' + email + '/' + password + '/' + slot + '/' + gender + '/' + year + '/' + phone + '/' + dept + '/' + id + '/' + address + '/' + res + '/' + dob + '/' + name)
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                alert('Registration successful');
+            } else {
+                alert('Registration failed');
+            }
+        });
+    }
+});
+
+</script>
+</html>

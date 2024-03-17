@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Timetable</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+
+        }
+
+        table {
+            overflow-x: scroll;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Student Timetable</h1>
+    <table>
+        <tr>
+            <th colspan="0">Time</th>
+            <td>9:00 AM - 10:00 AM</td>
+            <td>10:00 AM - 11:00 AM</td>
+            <td>11:00 AM - 12:00 PM</td>
+            <td>12:00 PM - 1:00 PM</td>
+            <td>1:00 PM - 2:00 PM</td>
+            <td>2:00 PM - 3:00 PM</td>
+            <td>3:00 PM - 4:00 PM</td>
+            <td>4:00 PM - 5:00 PM</td>
+        </tr>
+        <tr>
+            <td>Monday</td>
+            <td id="m1"></td>
+            <td id="m2"></td>
+            <td id="m3"></td>
+            <td id="m4"></td>
+            <td id="m5"></td>
+            <td id="m6"></td>
+            <td id="m7"></td>
+            <td id="m8"></td>
+        </tr>
+        <tr>
+            <td>Tuesday</td>
+            <td id="t1"></td>
+            <td id="t2"></td>
+            <td id="t3"></td>
+            <td id="t4"></td>
+            <td id="t5"></td>
+            <td id="t6"></td>
+            <td id="t7"></td>
+            <td id="t8"></td>
+        </tr>
+        <tr>
+            <td>Wednesday</td>
+            <td id="w1"></td>
+            <td id="w2"></td>
+            <td id="w3"></td>
+            <td id="w4"></td>
+            <td id="w5"></td>
+            <td id="w6"></td>
+            <td id="w7"></td>
+            <td id="w8"></td>
+        </tr>
+        <tr>
+            <td>Thursday</td>
+            <td id="th1"></td>
+            <td id="th2"></td>
+            <td id="th3"></td>
+            <td id="th4"></td>
+            <td id="th5"></td>
+            <td id="th6"></td>
+            <td id="th7"></td>
+            <td id="th8"></td>
+        </tr>
+        <tr>
+            <td>Friday</td>
+            <td id="f1"></td>
+            <td id="f2"></td>
+            <td id="f3"></td>
+            <td id="f4"></td>
+            <td id="f5"></td>
+            <td id="f6"></td>
+            <td id="f7"></td>
+            <td id="f8"></td>
+        </tr>
+    </table>
+</body>
+<script>
+    fetch('/ffetchtt')
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                data.data1.forEach(element => {
+                    if (element.day === 'Monday') {
+                        document.getElementById('m' + element.period).innerHTML = element.subject;
+                    }
+                    else if (element.day === 'Tuesday') {
+                        document.getElementById('t' + element.period).innerHTML = element.subject;
+                    }
+                    else if (element.day === 'Wednesday') {
+                        document.getElementById('w' + element.period).innerHTML = element.subject;
+                    }
+                    else if (element.day === 'Thursday') {
+                        document.getElementById('th' + element.period).innerHTML = element.subject;
+                    }
+                    else {
+                        document.getElementById('f' + element.period).innerHTML = element.subject;
+                    }
+                });
+            }
+            else{
+                alert('failed to fetch time table');
+            }
+        })
+</script>
+
+</html>

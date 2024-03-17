@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Email and Password Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 50x 0px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        div {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .navbar {
+            background-color: orangered;
+            height: 70px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        span {
+            color: orange;
+            font-style: italic;
+        }
+
+        .x {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <h1>Teacher <span>Registration</span></h1>
+    </div>
+
+    <div class="x">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="slot">Select The Slot:</label>
+        <select id="slot" name="period">
+            <option value="1" default>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="2">4</option>
+            <option value="3">5</option>
+        </select>
+        <label for="cabin">Cabin Number:</label>
+        <input type="text" id="cabin" name="cabin" required>
+        <label for="phone">Mobile Number:</label>
+        <input type="tel" id="phone" name="mobile" required>
+        <label for="id1">Faculty Id:</label>
+        <input type="tel" id="id1" name="mobile" required>
+        <label for="subject">Select The Subject:</label>
+        <select id="subject" name="period">
+            <option value="Maths" default>Maths</option>
+            <option value="C PROGRAMMING">C PROGRAMMING</option>
+            <option value="JAVA">JAVA</option>
+            <option value="DS">DATA STRUCTURES</option>
+            <option value="C++">C++</option>
+            <option value="WEB">WEB DEVELOPMENT</option>
+            <option value="ML">MACHINE LEARNING</option>
+            <option value="DL">DEEP LEARNING</option>
+            <option value="NLP">NATURAL LANGUAGE PROCESSING</option>
+            <option value="SE">SOFTWARE ENGINEERING</option>
+            <option value="DAA">DAA</option>
+        </select>
+
+        <button id="ok">Submit</button>
+    </div>
+</body>
+<script>
+    document.getElementById("ok").addEventListener('click', function (e) {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var slot = document.getElementById("slot").value;
+        var cabin = document.getElementById("cabin").value;
+        var phone = document.getElementById("phone").value;
+        var subject = document.getElementById("subject").value;
+        var id1 = document.getElementById("id1").value;
+        var name = document.getElementById("name").value;
+        if (email === '' || password === '' || slot === '' || cabin === '' || phone === '' || subject === '' || id1 === '' || name === '') {
+            alert('Enter all the details');
+        }
+        else if (phone.length != 10) {
+            alert('The phone must be at least 10 characters');
+        }
+        else if (Number(phone[0]) <= 5) {
+            alert('The phone must start with numbers 6,7,8,9');
+        }
+        else{
+        fetch('/teacher/' + email + '/' + password + '/' + slot + '/' + cabin + '/' + phone + '/' + subject + '/' + id1 + '/' + name)
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Registration successful');
+                }
+                else {
+                    alert('Registration failed');
+                }
+            });
+        }
+    });
+</script>
+
+</html>

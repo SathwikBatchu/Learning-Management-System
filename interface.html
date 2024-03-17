@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Interface</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: orange;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+      width: 100%;
+    }
+    h1 {
+      margin-left: 15px;
+    }
+    span {
+      color:orangered;
+      font-style: italic;
+    }
+    button {
+      height: 30px;
+      margin-right: 15px;
+      width:70px;
+      border-radius: 5px;
+      background-color:burlywood;
+      border: none;
+    }
+    a {
+      color:black;
+      font-weight: bolder;
+      text-decoration: none;
+      font-style: italic;
+    }
+    .container {
+      height: 100vh;
+      padding: 0 8%;
+    }
+    .container h1 {
+      text-align:center;
+      color: orangered;
+      padding-top: 50px;
+      margin-bottom: 60px;
+      font-size: bold;
+      margin-right: 45px;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap:25px
+    }
+    .x {
+      width: 100%;
+      text-align: center;
+      padding: 20px 5px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      transform: rotate(15deg);
+    }
+    .x h3 {
+      font-size: 20px;
+      color: orangered;
+      font-style: italic;
+      font-weight: bolder;
+    }
+    .x p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    @media (max-width: 768px) {
+      .navbar {
+        overflow-x: auto;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="navbar">
+    <h1 class="main">Faculty <span>Login</span></h1>
+    <button ><a href="/log">Log Out</a></button>
+  </div>
+  <div class="container">
+    <h1>Quick Links</h1>
+    <div class="row">
+      <div class="x">
+        <h3>Faculty Profile</h3>
+        <p>Faculty can view <br>their personal details</p>
+        <button><a href="/display">View</a></button>
+      </div>
+      <div class="x">
+        <h3>Student Search</h3>
+        <p>Faculty can able to <br>fetch student details</p>
+        <button><a href="/getdetails">Search</a></button>
+      </div>
+      <div class="x">
+        <h3>Marks Updation</h3>
+        <p>Faculty can able to <br>award marks to their<br> wards</p>
+        <button><a href="/facultymarks">Award</a></button>
+      </div>
+      <div class="x">
+        <h3>Event Oraganization</h3>
+        <p>Faculties can conduct <br>events and Oraganizations</p>
+        <button><a href="/fevents">Conduct</a></button>
+      </div>
+      <div class="x">
+        <h3>Time Table</h3>
+        <p>Faculties can check time<br>table of all classes </p>
+        <button><a href="/ff">Check</a></button>
+      </div>
+      <div class="x">
+        <h3>Material collection</h3>
+        <p>Faculties can upload <br>materials </p>
+        <button><a href="/materials">Upload</a></button>
+      </div>
+  </div>
+  </div>
+</body>
+</html>
