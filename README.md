@@ -8,4 +8,4 @@ SHANTAN TANGUTURI - 9921004711@klu.ac.in <br>
 SASI KUMAR TATA - 9921004714@klu.ac.in <br>
 SASI KUMAR UMMADISETTY - 99210041646@klu.ac.in
 # Demo Video Presentation :
-https://github.com/SathwikBatchu/Learning-Management-System/assets/110284712/a4bdb558-de58-434e-bcdd-d7582c423fc5
+https://github.com/SathwikBatchu/Learning-Management-System/assets/110284712/47cc0719-989a-48c2-84f0-3497c3d2c61b
